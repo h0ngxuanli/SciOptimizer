@@ -13,8 +13,8 @@ import pandas as pd
 import datetime
 from prompt import PromptStore
 from serpapi import GoogleSearch
+import arxiv
 import requests
-from scholarly import ProxyGenerator
 
 
 
@@ -49,9 +49,10 @@ class ResearchTools:
         self.kernel = kernel
         self.settings = settings
         
-    def setup_info_extractor(self):
-        promptstore = PromptStore()
+    def setup_info_extractor(self, tabel_columns):
+        self.table_columns = tabel_columns
         
+        promptstore = PromptStore()
         
         keywords_extraction_prompt = promptstore.get_prompt("keywords_extraction_prompt")
         self.kernel.add_function(
@@ -62,7 +63,18 @@ class ResearchTools:
             prompt_template_settings=self.settings,
         )
         
-        
+        for column in range(tabel_columns):
+            info_extraction_prompt = promptstore.get_prompt("keywords_extraction_prompt")
+            
+            
+            
+            self.kernel.add_function(
+                plugin_name=column + "ChatBot",
+                function_name=column,
+                prompt= info_extraction_prompt,
+                template_format="semantic-kernel",
+                prompt_template_settings=self.settings,
+            )
 
     @kernel_function(
         description="Extract keywords from user query using LLM",
@@ -76,181 +88,73 @@ class ResearchTools:
         return keywords
 
 
-
-    @kernel_function(
-        description="Extract what model is used",
-        name="get_model"
-    )
-    def get_model(self, kernel, chat_history, query: str) -> str:
-        keywords = kernel.invoke(
-            plugin_name="KeywordsChatBot",
-            function_name="KeywordsExtraction",
-            chat_history = chat_history, query=query)
-        return keywords
-    
-    
-    @kernel_function(
-        description="Extract keywords from user query using LLM",
-        name="get_keywords"
-    )
-    def get_summary(self, kernel, chat_history, query: str) -> str:
-        keywords = kernel.invoke(
-            plugin_name="KeywordsChatBot",
-            function_name="KeywordsExtraction",
-            chat_history = chat_history, query=query)
-        return keywords
-
-    @kernel_function(
-        description="Extract keywords from user query using LLM",
-        name="get_keywords"
-    )
-    def get_summary(self, kernel, chat_history, query: str) -> str:
-        keywords = kernel.invoke(
-            plugin_name="KeywordsChatBot",
-            function_name="KeywordsExtraction",
-            chat_history = chat_history, query=query)
-        return keywords
-
-
-
-
-    # # Download papers
-
-    # @kernel_function(
-    #     description="Retrieve relevant papers based on keywords",
-    #     name="retrieve_papers"
-    # )
-    # def retrieve_papers(self, num_papers, keywords=None, year_range=None, authors=None, institutions=None, conferences=None) -> list:
-    #     # Construct the search query based on provided parameters
-        
-    #     time = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
-    #     paper_path = f"../results/papers/{time}"
-    #     info_path = f"../results/info/{time}"
-    #     os.makedirs(paper_path, exist_ok=True)
-    #     os.makedirs(info_path, exist_ok=True)
-        
-    #     query_parts = []
-    #     if keywords:
-    #         query_parts.append(f"{' '.join(keywords)}")
-    #     if year_range:
-    #         year_query = ' OR '.join([f'{year}' for year in year_range])
-    #         query_parts.append(f'({year_query})')
-    #     if authors:
-    #         author_query = ' OR '.join([f'author:{author}' for author in authors])
-    #         query_parts.append(f'({author_query})')
-    #     if institutions:
-    #         institution_query = ' OR '.join([f'institution:{institution}' for institution in institutions])
-    #         query_parts.append(f'({institution_query})')
-    #     if conferences:
-    #         conference_query = ' OR '.join([f'conference:{conference}' for conference in conferences])
-    #         query_parts.append(f'({conference_query})')
-        
-    #     query = ' '.join(query_parts)
-        
-    #     # Set up SerpApi parameters
-    #     params = {
-    #         "engine": "google_scholar",
-    #         "q": query,
-    #         "api_key": os.environ.get("SERP_API_KEY"),
-    #         "num": num_papers
-    #     }
-        
-    #     search = GoogleSearch(params)
-    #     results = search.get_dict()
-        
-    #     papers = []
-    #     for num, pub in enumerate(results.get('organic_results', [])):
-    #         result = {
-    #             'title': pub.get('title', 'N/A'),
-    #             'year': pub.get('publication_info', {}).get('year', 'N/A'),
-    #             'author': ', '.join([author.get('name', '') for author in pub.get('publication_info', {}).get('authors', [])]),
-    #             'institution': pub.get('publication_info', {}).get('publisher', 'N/A'),
-    #             'conference': pub.get('publication_info', {}).get('venue', 'N/A'),
-    #             'url': pub.get('link', 'N/A'),
-    #             'abstract': pub.get('snippet', 'N/A'),
-    #             'keywords': f"keywords: {', '.join(keywords)}" if keywords else 'N/A'
-    #         }
-    #         papers.append(result)
-            
-    #         url = pub.get('link', 'N/A')
-    #         if url != 'N/A':
-    #             response = requests.get(url)
-    #             if response.status_code == 200:
-    #                 filename = pub.get('title', 'N/A')['title'].replace(' ', '_') + '.pdf'
-    #                 with open(f"{paper_path}/{filename}", 'wb') as f:
-    #                     f.write(response.content)
-    #         if num == num_papers - 1:
-    #             break
-        
-        
-    #     df = pd.DataFrame(papers)    
-    #     df.to_csv(f"../results/info/{time}.csv", index=False, encoding='utf-8-sig')
-    #     return papers
-
     @kernel_function(
         description="Retrieve relevant papers based on keywords",
         name="retrieve_papers"
     )
     def retrieve_papers(self, num_papers, keywords=None, year_range=None, authors=None, institutions=None, conferences=None) -> list:
+       
+       
+        time = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
+        paper_path = f"../results/papers/{time}"
+        info_path = f"../results/info/{time}"
+        os.makedirs(paper_path, exist_ok=True)
+        os.makedirs(info_path, exist_ok=True)
+       
+       
         # Construct the search query based on provided parameters
-        
-        
-        
-        # Set up a ProxyGenerator object to use free proxies
-        # This needs to be done only once per session
-        pg = ProxyGenerator()
-        pg.FreeProxies()
-        scholarly.use_proxy(pg)
-
-        # # Now search Google Scholar from behind a proxy
-        # search_query = scholarly.search_pubs('Perception of physical stability and center of mass of 3D objects')
-        # scholarly.pprint(next(search_query))
-        
-        
         query_parts = []
         if keywords:
-            query_parts.append(f"keywords: {', '.join(keywords)}")
-        if year_range:
-            year_query = ' OR '.join([f'year:{year}' for year in year_range])
-            query_parts.append(f'({year_query})')
+            query_parts.extend(keywords)
         if authors:
-            author_query = ' OR '.join([f'author:{author}' for author in authors])
-            query_parts.append(f'({author_query})')
+            query_parts.extend([f"au:{author}" for author in authors])
         if institutions:
-            institution_query = ' OR '.join([f'institution:{institution}' for institution in institutions])
-            query_parts.append(f'({institution_query})')
+            query_parts.extend([f"inst:{institution}" for institution in institutions])
         if conferences:
-            conference_query = ' OR '.join([f'conference:{conference}' for conference in conferences])
-            query_parts.append(f'({conference_query})')
+            query_parts.extend([f"co:{conference}" for conference in conferences])
         
-        query = ' '.join(query_parts)
+        query = ' AND '.join(query_parts)
+        
+        # Set up the search parameters
+        search = arxiv.Search(
+            query=query,
+            max_results=num_papers,
+            sort_by=arxiv.SortCriterion.Relevance,
+            sort_order=arxiv.SortOrder.Descending
+        )
+        
+        # If year range is provided, we'll filter results later
+        min_year = int(min(year_range)) if year_range else None
+        max_year = int(max(year_range)) if year_range else None
         
         # Perform the search
-        search_query = scholarly.search_pubs(query)
-        
+        client = arxiv.Client()
         results = []
-        for num, pub in enumerate(search_query):
-            pub = scholarly.fill(pub)
-            result = {
-                'title': pub['bib'].get('title', 'N/A'),
-                'year': pub['bib'].get('pub_year', 'N/A'),
-                'author': pub['bib'].get('author', ""),
-                'institution': pub['bib'].get('institution', 'N/A'),
-                'conference': pub['bib'].get('venue', 'N/A'),
-                'url': pub.get('pub_url', 'N/A'),
-                'abstract': pub['bib'].get('abstract', 'N/A'),
-                'keywords': f"keywords: {', '.join(keywords)}"
-            }
+        
+        for paper in client.results(search):
+            # Check if the paper's year is within the specified range
+            paper_year = paper.published.year
+            if (min_year is None or paper_year >= min_year) and (max_year is None or paper_year <= max_year):
+                result = {
+                    'title': paper.title,
+                    'year': paper.published.year,
+                    'author': ', '.join([author.name for author in paper.authors]),
+                    # 'institution': 'N/A',  # arXiv API doesn't provide institution information
+                    # 'conference': 'N/A',  # arXiv API doesn't provide conference information
+                    'url': paper.pdf_url,
+                    'abstract': paper.summary,
+                    'keywords': f"keywords: {', '.join(keywords)}" if keywords else 'N/A'
+                }
+                
+            
+            paper.download_pdf(dirpath=paper_path, filename=f"{paper.title.replace(' ', '_')}.pdf")
             results.append(result)
-            if num == num_papers:
-                break
-        print(111111111)
-        print(results)
+        
+        
         time = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M')
         df = pd.DataFrame(results)    
-        df.to_csv(f"../results/info/{time}.csv", index = False, encoding='utf-8-sig')
+        df.to_csv(f"../results/info/{time}.csv", index=False, encoding='utf-8-sig')
         return results
-
 
 
     # def download_paper(url, title):
