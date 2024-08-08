@@ -1,9 +1,14 @@
 class PromptStore:
     def __init__(self):
+        # keywords_extraction_prompt = """
+        # Just and only Repeast the user query sentence
         
+        # New Task:
+        # User Query: {{$query}}
+        # """
         keywords_extraction_prompt = """
-        Instruction:
-        You are assisting a researcher who needs to find academic papers. Extract key search parameters into well-organized categories based on researcher's query. If the query includes abstract date information, calculate time starting from the current year, which is 2024. Please present the findings in a clear, structured list format. 
+        system:
+        Extract key search parameters into well-organized categories based on researcher's query. If the query includes abstract date information, calculate time starting from the current year, which is 2024. Please present the extracted search parameters strictly in the following format: 
 
         Example1:
         User Query: "I need papers from author Michael Smith on machine learning published between 2019 and 2021."
@@ -42,10 +47,17 @@ class PromptStore:
         """
         self.prompts = {"keywords_extraction_prompt":keywords_extraction_prompt}
         
-        
+    def add_prompt(self, column):
+        self.prompts[column] = f"Extract and provide a precise and concise {column}" +  "of the core aspects from the provided academic paper for inclusion in a research survey table. Here is the paper content{{$paper_text}}"
+    
     def get_prompt(self, key):
         return self.prompts[key]
         
     
 
 
+        # Keywords:
+        # Year Range:
+        # Authors:
+        # Institutions:
+        # Conferences:
