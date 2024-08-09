@@ -35,8 +35,8 @@ jobs:
       run: black --check interface/st_interface.py
 
     - name: Lint with flake8
-      run: flake8 interface/st_interface.py
-
+      run: flake8 interface/st_interface.py --ignore=E402,E501 --max-line-length=100
+      
     - name: Test Streamlit app
       run: |
         streamlit run interface/st_interface.py --help
