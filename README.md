@@ -16,6 +16,30 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 </div>
 
 ## Project Structure
+```plaintext
+└── SciOptimizer/
+    ├── .github
+    │   └── workflows
+    │       └── ci-cd.yml
+    ├── Dockerfile
+    ├── README.md
+    ├── attachment
+    ├── evaluate  # model evaluation
+    │   ├── evaluate.py
+    │   ├── predict.py
+    │   └── visualize.py
+    ├── interface # streamlit interface
+    │   └── st_interface.py
+    ├── requirements.txt
+    ├── results
+    └── src # Semantic Kernel AI Agents
+        ├── .env
+        ├── agents_sk.py
+        ├── prompt.py
+        ├── test.ipynb
+        └── utils.py
+```
+
 
 ## Setup Instructions
 
