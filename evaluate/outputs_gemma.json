@@ -1,0 +1,334 @@
+{
+    "gemma": [
+        {
+            "keywords": [
+                "solar energy innovations"
+            ],
+            "year_range": [
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [
+                "dr. susan chao"
+            ],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "crispr gene-editing"
+            ],
+            "year_range": [
+                "2020",
+                "2019",
+                "2018",
+                "2017",
+                "2016"
+            ],
+            "authors": [],
+            "institutions": [
+                "yale university"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "deep learning",
+                "patient diagnosis"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022"
+            ],
+            "authors": [],
+            "institutions": [],
+            "conferences": [
+                "nips"
+            ]
+        },
+        {
+            "keywords": [
+                "carbon footprint reduction",
+                "climate change"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021"
+            ],
+            "authors": [
+                "alexander grant"
+            ],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "semiconductor photonics"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [],
+            "institutions": [
+                "university of cambridge"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "ai-driven predictive maintenance",
+                "automotive technologies"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020",
+                "2019",
+                "2018"
+            ],
+            "authors": [],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [],
+            "year_range": [],
+            "authors": [],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "geothermal energy sources"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [
+                "lisa murdoch"
+            ],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "nanotechnology",
+                "targeted drug delivery"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [],
+            "institutions": [],
+            "conferences": [
+                "ieee conferences"
+            ]
+        },
+        {
+            "keywords": [
+                "organic farming practices"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [],
+            "institutions": [
+                "environmental protection agency"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "machine translation"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [
+                "canadian researchers"
+            ],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "fiscal impacts",
+                "climate change mitigation"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020",
+                "2019",
+                "2018"
+            ],
+            "authors": [],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "lab-grown meat",
+                "meat techniques"
+            ],
+            "year_range": [
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [],
+            "institutions": [
+                "imperial college london"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "data protection",
+                "privacy",
+                "cybersecurity"
+            ],
+            "year_range": [
+                "2024",
+                "2023"
+            ],
+            "authors": [],
+            "institutions": [
+                "european institutions"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "quantum computing",
+                "material science"
+            ],
+            "year_range": [],
+            "authors": [],
+            "institutions": [],
+            "conferences": [
+                "physical review letters"
+            ]
+        },
+        {
+            "keywords": [
+                "microbial degradation",
+                "ocean plastics"
+            ],
+            "year_range": [
+                "2022",
+                "2021",
+                "2020",
+                "2019",
+                "2018",
+                "2017"
+            ],
+            "authors": [
+                "harold finch"
+            ],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "augmented reality",
+                "psychological therapy"
+            ],
+            "year_range": [
+                "2021",
+                "2020",
+                "2019",
+                "2018",
+                "2017"
+            ],
+            "authors": [],
+            "institutions": [
+                "university of oxford"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "energy efficiency",
+                "smart grid technologies"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022"
+            ],
+            "authors": [],
+            "institutions": [
+                "technical university of munich"
+            ],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "equity",
+                "inclusion",
+                "sociology of education"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020"
+            ],
+            "authors": [],
+            "institutions": [],
+            "conferences": []
+        },
+        {
+            "keywords": [
+                "dark matter detection"
+            ],
+            "year_range": [
+                "2024",
+                "2023",
+                "2022",
+                "2021",
+                "2020",
+                "2019",
+                "2018"
+            ],
+            "authors": [],
+            "institutions": [
+                "nasa"
+            ],
+            "conferences": [
+                "major astronomy conferences"
+            ]
+        }
+    ]
+}

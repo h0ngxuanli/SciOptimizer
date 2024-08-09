@@ -1,11 +1,5 @@
 class PromptStore:
     def __init__(self):
-        # keywords_extraction_prompt = """
-        # Just and only Repeast the user query sentence
-        
-        # New Task:
-        # User Query: {{$query}}
-        # """
         keywords_extraction_prompt = """
         system:
         Extract key search parameters into well-organized categories based on researcher's query. If the query includes abstract date information, calculate time starting from the current year, which is 2024. Please present the extracted search parameters strictly in the following format: 
@@ -53,11 +47,3 @@ class PromptStore:
     def get_prompt(self, key):
         return self.prompts[key]
         
-    
-
-
-        # Keywords:
-        # Year Range:
-        # Authors:
-        # Institutions:
-        # Conferences:

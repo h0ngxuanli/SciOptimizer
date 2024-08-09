@@ -1,10 +1,18 @@
-
-import fitz  # Import PyMuPDF
-import re  # Import the regular expression library
-
+import fitz  # PyMuPDF for handling PDF files
+import re  # Regular expression library
 
 def extract_parameters(output):
-    # Initialize the dictionary to hold extracted parameters
+    """Extract search parameters from text based on predefined keys."""
+    
+    # example output = """
+    # * *keywords ['graph neural networks']
+    # * **Year Range:** [2022]
+    # * **Authors []
+    # * **Institutions:** []
+    # * **Conferences:** []
+    # """
+    
+    # Define a dictionary to store the extracted parameters
     params = {
         'keywords': [],
         'year_range': [],
@@ -13,78 +21,52 @@ def extract_parameters(output):
         'conferences': []
     }
 
-    # Define possible keys for recognition
+    # List of keys we're interested in extracting, aligned with params keys
     possible_keys = ['keywords', 'year range', 'authors', 'institutions', 'conferences']
-
-    # Split the output into lines
-    lines = output.split('\n')
+    lines = output.split('\n')  # Split the output text into lines
     
-    # Process each line to extract parameters
     for line in lines:
-        # Normalize the line for case insensitivity
-        line = line.lower()
-        # Extract the key by finding the first keyword that appears in the line
+        line = line.lower()  # Normalize the line for case insensitivity
         key_found = None
+        # Determine if the line contains any of the possible keys
         for key in possible_keys:
             if key in line:
                 key_found = key
                 break
-        
         if key_found:
-            # Normalize the key to match dictionary keys
-            normalized_key = key_found.replace(' ', '_')
-            # Look for the list enclosed in brackets
-            start_index = line.find('[')
-            end_index = line.rfind(']') + 1
+            normalized_key = key_found.replace(' ', '_')  # Normalize the key to match params dictionary keys
+            # Extract values enclosed in brackets
+            start_index, end_index = line.find('['), line.rfind(']') + 1
             if start_index != -1 and end_index != -1:
-                # Extract the substring for the list and safely parse it
                 value_str = line[start_index:end_index].strip()
+                # Safely parse and clean the list items
                 cleaned_values = [item.strip().strip("'\"") for item in value_str.strip('[]').split(',')]
-                
                 params[normalized_key] = cleaned_values if cleaned_values != [''] else []
 
     return params
 
-
-
-
-
-
 def extract_text_from_pdf(pdf_path):
-    # Open the PDF file
-    doc = fitz.open(pdf_path)
+    
+    """Extract text from a PDF file up to a section labeled 'References'."""
+    
+    doc = fitz.open(pdf_path)  # Open the PDF file
     text = ""
-    references_pattern = re.compile(r'^[^\S\r\n]*references[^\S\r\n]*$', re.IGNORECASE)  # Regex for 'References' on a single line, case-insensitive
+    # Regex to identify the 'References' header, ignoring leading/trailing whitespace
+    references_pattern = re.compile(r'^\s*references\s*$', re.IGNORECASE)
 
-    # Iterate through each page
+    # Process each page in the PDF
     for page in doc:
-        # Extract text from the page
-        page_text = page.get_text("text")
+        page_text = page.get_text("text")  # Get text from the page
         page_lines = page_text.splitlines()  # Split text into lines
         
-        # Iterate through each line
         for line in page_lines:
-            # Check if the line matches 'References', case-insensitive
             if references_pattern.search(line.strip()):
-                break  # Break if 'References' is found
-            else:
-                # Continue appending text if not found
-                text += line + "\n"
+                break  # Stop reading if 'References' is found
+            text += line + "\n"
         else:
-            # Continue to next page if 'References' not found in current page
+            # Continue to the next page if 'References' not found in current page
             continue
-        # Break outer loop if 'References' found
+        # Exit loop if 'References' found
         break
 
     return text
-
-# def extract_text_from_pdf(pdf_path):
-#     # Open the PDF file
-#     doc = fitz.open(pdf_path)
-#     text = ""
-#     # Iterate through each page
-#     for page in doc:
-#         # Extract text from the page
-#         text += page.get_text()
-#     return text
-
