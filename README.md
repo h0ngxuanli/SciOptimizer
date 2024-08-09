@@ -1,8 +1,22 @@
 # Research Optimizer
 
-![CI](https://github.com/<OWNER>/<REPO>/actions/workflows/<WORKFLOW_FILE>/badge.svg)
+![CI](https://github.com/h0ngxuanli/scioptimizer/actions/workflows/ci-cd.yml/badge.svg)
 
-## Project Propose
+
+## Quick Links
+- [Project Purposal](#project-purposal)
+- [Demo](#demo)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Application](#running-the-application)
+- [Usage Example](#usage-example)
+- [Evaluation Results](#evaluation-results)
+- [Tool Experience: Semantic Kernel](#tool-experience-semantic-kernel)
+
+## Project Proposal
 The rapid advancement of AI technologies demands a flexible and efficient paper retrieval system to keep researchers updated on the latest developments. In an era where timely access to cutting-edge research is crucial, a tool with fine-grained search capabilities—allowing retrieval based on keywords, authors, publication years, conferences, and institutions—is essential. This system would streamline the research process by integrating with major academic databases like arXiv and Google Scholar, while also supporting Zotero storage and customized analysis of paper content, enabling researchers to quickly capture and utilize emerging trends in their work.
 
 
@@ -43,10 +57,11 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 
 ## Setup Instructions
 
-> ‼️ [Semantic Kernel](https://github.com/microsoft/semantic-kernel) does not support llamafile. It explictly supports OpenAI models, Azure models, and Ollama models. 
+
+> ‼️ Important Notice:
+> I wanted to let you know about a slight adjustment I’ve had to make for this project. While the original requirement was to avoid including LLMs files in the Docker image, I encountered a technical limitation that necessitated a change.
 > 
-> 
-> 
+> [SemiKernel](https://github.com/microsoft/semantic-kernel)  doesn’t support llamafile but does support OpenAI, Azure, and Ollama models. To ensure everything runs smoothly without requiring additional downloads (like Ollama) on your end, I’ve decided to include the LLaMA-3 model (around 5GB) directly in the Docker image. This allows the application to function correctly while still respecting the project’s constraints as much as possible.
 
 ### Prerequisites
 
