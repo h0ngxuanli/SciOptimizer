@@ -1,5 +1,6 @@
 # Research Optimizer
 
+![CI](https://github.com/<OWNER>/<REPO>/actions/workflows/<WORKFLOW_FILE>/badge.svg)
 
 ## Project Propose
 The rapid advancement of AI technologies demands a flexible and efficient paper retrieval system to keep researchers updated on the latest developments. In an era where timely access to cutting-edge research is crucial, a tool with fine-grained search capabilities—allowing retrieval based on keywords, authors, publication years, conferences, and institutions—is essential. This system would streamline the research process by integrating with major academic databases like arXiv and Google Scholar, while also supporting Zotero storage and customized analysis of paper content, enabling researchers to quickly capture and utilize emerging trends in their work.
