@@ -4,17 +4,17 @@
 
 
 ## Quick Links
-- [Project Purposal](#project-purposal)
-- [Demo](#demo)
-- [Architecture](#architecture)
+- [Project Proposal](#project-proposal)
+- [Demo Video](#demo-video)
+- [Architecture Diagram](#architecture-diagram)
 - [Project Structure](#project-structure)
-- [Setup](#setup)
+- [Setup Instructions](#setup-instructions)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Application](#running-the-application)
-- [Usage Example](#usage-example)
-- [Evaluation Results](#evaluation-results)
-- [Tool Experience: Semantic Kernel](#tool-experience-semantic-kernel)
+- [Usage Example](#example)
+- [Evaluation Results(GPT-4 Baseline)](#evaluation-results)
+- [Tool Experience: Semantic Kernel](#cool-tool-experience)
 
 ## Project Proposal
 The rapid advancement of AI technologies demands a flexible and efficient paper retrieval system to keep researchers updated on the latest developments. In an era where timely access to cutting-edge research is crucial, a tool with fine-grained search capabilities—allowing retrieval based on keywords, authors, publication years, conferences, and institutions—is essential. This system would streamline the research process by integrating with major academic databases like arXiv and Google Scholar, while also supporting Zotero storage and customized analysis of paper content, enabling researchers to quickly capture and utilize emerging trends in their work.
@@ -129,7 +129,7 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 
 
 
-## Evaluation Results (GPT-4 Baseline)
+## Evaluation Results
 
 This part mainly focus on evaluation 2 aspects of model ability **Keywords Extraction** and **User-defined Downstream Tasks**:
 
