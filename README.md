@@ -17,7 +17,7 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 
 ## Project Structure
 ```plaintext
-└── SciOptimizer/
+└── scioptimizer/
     ├── .github
     │   └── workflows
     │       └── ci-cd.yml
@@ -42,6 +42,12 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 
 
 ## Setup Instructions
+
+> ‼️ [Semantic Kernel](https://github.com/microsoft/semantic-kernel) does not support llamafile. It explictly supports OpenAI models, Azure models, and Ollama models. 
+> 
+> 
+> 
+
 ### Prerequisites
 
 - Docker
@@ -51,8 +57,8 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:h0ngxuanli/SciOptimizer.git
-   cd SciOptimizer
+   git clone git@github.com:h0ngxuanli/scioptimizer.git
+   cd scioptimizer
    ```
 
 2. Set up the Python environment:
