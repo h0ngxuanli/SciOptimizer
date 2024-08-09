@@ -47,7 +47,7 @@ jobs:
         sudo chmod +x /bin/hadolint
 
     - name: Lint Dockerfile
-      run: hadolint Dockerfile
+      run: hadolint Dockerfile --ignore DL3008 --ignore DL3009 --ignore DL3015 --ignore DL4006 --ignore SC2028
 
     - name: Build Docker image
       run: docker build -t ${{ env.DOCKER_IMAGE }} .

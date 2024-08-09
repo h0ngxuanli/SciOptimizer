@@ -42,26 +42,56 @@ The rapid advancement of AI technologies demands a flexible and efficient paper 
 
 
 ## Setup Instructions
+### Prerequisites
 
-## Running the Application
+- Docker
+- Git
+- Python 3.10
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:h0ngxuanli/SciOptimizer.git
+   cd SciOptimizer
+   ```
+
+2. Set up the Python environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   pip install -r requirements.txt
+   ```
+
+### Running the Application
+
+1. Build the Docker image:
+   ```bash
+   docker build -t scioptimizer .
+   ```
+
+2. Run the container:
+   ```bash
+   docker run -p 8501:8501 -p 11434:11434 scioptimizer
+   ```
+3. Access the application at `http://localhost:8501`.
 
 
 ## Example
 
-### Step1 - Specify table column features
+### Step1 - Specify table column take-away message
 
 <div align="center">
     <img src="./attachment/example1.png" alt="图片描述" width="600">
 </div>
 
-### Step2 - Choose your LLMs model
+### Step2 - Choose LLaMA-3 as LLMs model
 
 <div align="center">
     <img src="./attachment/example2.png" alt="图片描述" width="300">
 </div>
 
 
-### Step3 - Input your target paper information
+### Step3 - Input target paper "graph neural networks 2023"
 <div align="center">
     <img src="./attachment/example3.png" alt="图片描述" width="600">
 </div>
